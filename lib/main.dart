@@ -1,3 +1,4 @@
+import 'package:first_app/widgets/user_card.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,15 +46,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           spacing: 20,
           children: [
-            Icon(Icons.work, size: 50, shadows: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 8,
-              )
-            ],),
-          ],
+            UserCard(name: 'kittasil silanon', imageUrl: 'https://png.pngtree.com/png-vector/20231019/ourmid/pngtree-user-profile-avatar-png-image_10211467.png'),
+            UserCard(name: 'John Wick', imageUrl: 'https://f.ptcdn.info/550/090/000/mlk96e3hhCs978tk39m-o.jpg'),
+            ],
+          ),
         ),
-      ),
-    );
+      );
   }
 }
