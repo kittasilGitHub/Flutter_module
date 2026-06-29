@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          // This is the theme of your application.
-          colorScheme: .fromSeed(seedColor: Colors.blue),
+        // This is the theme of your application.
+        colorScheme: .fromSeed(seedColor: Colors.blue),
       ),
       home: const MyHomePage(title: 'Flutter App'),
       //debugShowCheckedModeBanner: true,
@@ -31,6 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // Dropdown Button
+  String? selectedDropdown;
 
   @override
   Widget build(BuildContext context) {
@@ -39,48 +41,19 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
+      body: Center(
         child: Column(
+          spacing: 20,
           children: [
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Image.asset('assets/images/sky.jpeg'),
-                    Text('Sky', 
-                        style: TextStyle(fontSize: 20, color: Colors.blue),
-                    ),
-                    Text('ท้องฟ้า', 
-                        style: TextStyle(fontSize: 16, color: Colors.blueGrey),
-                    ),
-                  ]
-                ),
-              ),
-            ),
-            SizedBox(height: 20),
-            Card( 
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Image.asset('assets/images/sky.jpeg'),
-                    Text('Sky2', 
-                        style: TextStyle(fontSize: 20, color: Colors.blue),
-                    ),
-                    Text('ท้องฟ้า2', 
-                        style: TextStyle(fontSize: 16, color: Colors.blueGrey),
-                    ),
-                  ]
-                ),
-              ),
-            ),
+            Icon(Icons.work, size: 50, shadows: [
+              BoxShadow(
+                color: Colors.black,
+                blurRadius: 8,
+              )
+            ],),
           ],
         ),
       ),
     );
   }
 }
-
-
-// colorScheme: .fromSeed(seedColor: const Color.fromARGB(255, 183, 171, 58)),
