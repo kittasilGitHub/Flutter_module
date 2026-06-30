@@ -1,0 +1,36 @@
+import 'package:first_app/views/pages/home_page.dart';
+import 'package:first_app/views/pages/setting_page.dart';
+import 'package:first_app/widgets/bottom_navbar.dart';
+import 'package:flutter/material.dart';
+import 'package:first_app/data/notifier.dart';
+
+class MainTreeWidget extends StatefulWidget {
+  const MainTreeWidget({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MainTreeWidget> createState() => _MainTreeWidgetState();
+}
+
+class _MainTreeWidgetState extends State<MainTreeWidget> {
+
+  List<Widget> pages = [Homepage(), SettingPage()];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text(widget.title),
+      ),
+       body: ValueListenableBuilder(
+         valueListenable: selectedPageNotifier,
+         builder: (context, selectedPage, child) {
+           return pages.elementAt(selectedPage);
+         }
+       ),
+       bottomNavigationBar: BottomNavbar(),
+    );
+  }
+}
