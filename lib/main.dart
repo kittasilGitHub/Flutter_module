@@ -1,5 +1,7 @@
+import 'package:first_app/bloc/counter/counter_bloc.dart';
 import 'package:first_app/views/main_tree.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +18,11 @@ class MyApp extends StatelessWidget {
         // This is the theme of your application.
         colorScheme: .fromSeed(seedColor: Colors.blue),
       ),
-      home: const MainTreeWidget(title: 'Flutter App'),
+      // BlocProvider is used to provide the CounterBloc to the widget tree.
+      home: BlocProvider(
+        create: (context) => CounterBloc(), // Create an object of CounterBloc,
+        child: const MainTreeWidget(title: 'Flutter App'),
+      ),
     );
   }
 }
