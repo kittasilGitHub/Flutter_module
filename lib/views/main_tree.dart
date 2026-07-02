@@ -1,10 +1,11 @@
 import 'package:first_app/bloc/counter/counter_bloc.dart';
 import 'package:first_app/bloc/counter/counter_event.dart';
+import 'package:first_app/bloc/page/page_bloc.dart';
+import 'package:first_app/bloc/page/page_state.dart';
 import 'package:first_app/views/pages/home_page.dart';
 import 'package:first_app/views/pages/setting_page.dart';
 import 'package:first_app/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:first_app/data/notifier.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainTreeWidget extends StatefulWidget {
@@ -28,10 +29,9 @@ class _MainTreeWidgetState extends State<MainTreeWidget> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: selectedPageNotifier,
-        builder: (context, selectedPage, child) {
-          return pages.elementAt(selectedPage);
+      body: BlocBuilder<PageBloc, PageState>(
+        builder: (context, state) {
+          return pages.elementAt(state.selectedPage);
         },
       ),
       floatingActionButton: Column(
@@ -39,13 +39,17 @@ class _MainTreeWidgetState extends State<MainTreeWidget> {
         children: [
           FloatingActionButton(
             onPressed: () {
-              print('-----------------------------');
-              print('FloatingActionButton pressed');
-              print('IncreaseCounterEvent sent');
               counterBloc.add(IncreaseCounterEvent());
             },
             tooltip: 'Increase',
             child: Icon(Icons.add),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              counterBloc.add(DecreaseCounterEvent());
+            },
+            tooltip: 'Decrease',
+            child: Icon(Icons.remove),
           ),
         ],
       ),

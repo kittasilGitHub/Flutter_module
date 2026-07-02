@@ -13,6 +13,16 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
 
       emit(CounterState(counter: newCounterValue));
     });
+    // event handler for DecreaseCounterEvent
+    on<DecreaseCounterEvent>((event, emit) {
+
+      int newCounterValue = state.counter - 1;
+
+      if (newCounterValue < 0) {
+        newCounterValue = 0; // Ensure the counter does not go below 0
+      }
+      emit(CounterState(counter: newCounterValue));
+    });
 
     // other event handlers can be added here for different events
   }
